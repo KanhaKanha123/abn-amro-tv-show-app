@@ -1,5 +1,7 @@
+import { ModifiedShows, ShowType } from "../types/types";
+
 //format data, just keep neccessary fields from big object
-export const formatShowsData = (shows: any) => {
+export const formatShowsData = (shows: ShowType[]) => {
     try {
         const showsDataGroupedByGenres = [];
         const allGenres = genres(shows);
@@ -18,23 +20,38 @@ export const formatShowsData = (shows: any) => {
 
 };
 
-export const showsByGenre = (shows: any[], genre: string) => {
+export const showsByGenre = (shows: ShowType[], genre: string) => {
     return shows.sort((a, b) => b.rating.average - a.rating.average)
         .filter((show) => {
             return show.genres.includes(genre);
-        }).map(show=>({
-            ...show,
-            fullName:show.name,
-            name:show.name.length>15?show.name.substring(0, 15)+'...':show.name,
-            genres:show.genres.map((genre:string,index:number)=>(index>0?',':'')+genre)
+        }).map(show => ({
+            image: show.image?.medium,
+            rating: show.rating.average,
+            fullName: show.name,
+            name: show.name.length > 15 ? show.name.substring(0, 15) + '...' : show.name,
+            genres: show.genres.map((genre: string, index: number) => (index > 0 ? ',' : '') + genre),
+            summary: show.summary
         }));
 };
 
-export const genres = (shows: any[]) => {
-    return shows.reduce((allGenres: any, show: any) => {
+export const genres = (shows: ShowType[]) => {
+    return shows.reduce((allGenres: any, show: ShowType) => {
         for (const genre of show.genres) {
             allGenres.add(genre);
         }
         return allGenres;
     }, new Set<string>());
 };
+
+export const filterBySearchTerm = (shows: ModifiedShows[], term: string) => {
+    return shows.map((show) => {
+        return {
+            ...show,
+            showsList: show.showsList.filter((item: ShowType) => item.name.toLowerCase().includes(term.toLowerCase()))
+        };
+    }).filter(show => show.showsList.length > 0);
+};
+
+export const debounce = (time: number) => {
+    return new Promise(res => setTimeout(() => res('done'), time));
+}

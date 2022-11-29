@@ -1,5 +1,5 @@
 import { RoutesConfig } from '../constants/routes.constant';
-import type { Show, ShowSearch } from '../types/types';
+import type { ShowAllData } from '../types/types';
 
 const headers = {
   headers: {
@@ -7,7 +7,7 @@ const headers = {
   },
 };
 
-export async function fetchShows(page:number): Promise<Show[]> {
+export async function fetchShows(page: number): Promise<ShowAllData[]> {
   const params = new URLSearchParams({
     page: page as unknown as string,
   }).toString();
@@ -22,7 +22,8 @@ export async function fetchShows(page:number): Promise<Show[]> {
   return await response.json();
 }
 
-export async function fetchShow(id: number): Promise<Show> {
+//I did not use because i collected data in the state already
+export async function fetchShow(id: number): Promise<ShowAllData> {
   const url = `${RoutesConfig.apiShows}/${id}`;
   const response = await fetch(url, headers);
 
@@ -31,20 +32,4 @@ export async function fetchShow(id: number): Promise<Show> {
   }
 
   return await response.json();
-}
-
-export async function fetchSearchShows(search: string): Promise<Show[]> {
-  const params = new URLSearchParams({
-    q: search,
-  }).toString();
-
-  const url = `${RoutesConfig.apiSearchShows}?${params}`;
-  const response = await fetch(url, headers);
-
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-
-  const json = await response.json();
-  return json.map((item: ShowSearch): Show => item.show);
 }

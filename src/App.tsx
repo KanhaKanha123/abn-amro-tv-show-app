@@ -1,25 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Header from './components/header/Header';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import { RoutesConfig } from './constants/routes.constant';
-import ShowDetails from './components/show/SHowDetails';
+import Routing from './routing/Routing';
+import ErrorBoundary from './error-boundries/ErrorBoundry';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-      <Header/>
-      <Routes>
-        <Route path={RoutesConfig.dashboard} element={<Dashboard/>}>
-        </Route>
-        <Route path={RoutesConfig.showDetails} element={<ShowDetails/>}>
-        </Route>
-      </Routes>
-      </BrowserRouter>
-    
+       <ErrorBoundary>
+        <Routing></Routing>
+        </ErrorBoundary>
     </div>
   );
 }

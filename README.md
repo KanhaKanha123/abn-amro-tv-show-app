@@ -1,3 +1,8 @@
+
+# Project Setup
+ 1.Please clone the repo from https://github.com/KanhaKanha123/abn-amro-tv-show-app.git
+ 2.npm install
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -29,18 +34,26 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+# Application design
+1.Loosely coupled
+2.Shared rating component
+3.Mobile friendly
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Funcationality Dashboard
+ 1.Application will have listing on dashboard by genre names
+ 2.Each genre have more listing inside sorted by ratings
+ 3.Horizontal list will have 6 records with pagination in the bottom
+ 4.Count per page also is shown near pagination array.
+ 5.Pagination works in memory by array.slice method so no api call is made
+ 6.Pagination will not be visible if list has less than 6 records
+ 7.All the validations for empty list or empty records are applied and empty message also displayed.
+ 
+# Search
+1.Can type any keyword
+2.Debouncing implemented to make performance better
+3.After 500 miliseconds filtered records will be displayed for each genre
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Detail Page
+1.Click on the cart
+2.It will redirect you to the show detail page where you will see the detail of the show like name,image,rating,genre and summary
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

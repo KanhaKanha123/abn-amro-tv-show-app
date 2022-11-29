@@ -1,27 +1,36 @@
-import {Container,Navbar,FormControl, Nav, Dropdown, Badge, Button} from 'react-bootstrap';
-import { AiFillDelete } from 'react-icons/ai';
-import {FaShoppingCart} from 'react-icons/fa';
+import { Container, Navbar, FormControl, Nav, Dropdown, Badge, Button } from 'react-bootstrap';
+import { MdAccountBox } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-// import { showsFilterState } from '../../store/context/Context';
+import { debounce } from '../../helpers/formatData';
+import { ShowsFilterState } from '../../store/context/Context';
 
-const Header=()=>{
+const Header = () => {
 
-   // const {filterState,filterDispatch}=showsFilterState();
-    
-return <Navbar bg='dark' variant='dark' style={{height:80}}>
-    <Container>
-        <Navbar.Brand>
-            <Link to='/'>TV SHOWS</Link>
-        </Navbar.Brand>
-        <Navbar.Text className='search'>
-            <FormControl style={{width:500}} 
-             placeholder='Search a product'
-             className='m-auto'> 
-            </FormControl>
-        </Navbar.Text>
-    </Container>
-    <Nav></Nav>
-</Navbar>
+    const { filterDispatch } = ShowsFilterState();
+
+    const dispatchFilterAction = async (e: any) => {
+        const sleep = await debounce(500);
+        filterDispatch({ type: "BY_SEARCH_TERM", payload: e.target.value })
+    }
+
+    return (<Navbar bg='dark' variant='dark' style={{ height: 80 }}>
+        <Container>
+            <Navbar.Brand>
+                <Link to='/'>TV SHOWS</Link>
+            </Navbar.Brand>
+            <Navbar.Text className='search'>
+                <FormControl
+                    placeholder='Search a show'
+                    className='m-auto'
+                    onChange={(e) => dispatchFilterAction(e)}>
+                </FormControl>
+            </Navbar.Text>
+            <Navbar.Brand>
+                <MdAccountBox fontSize="35" />
+            </Navbar.Brand>
+        </Container>
+        <Nav></Nav>
+    </Navbar>);
 }
 
 export default Header;

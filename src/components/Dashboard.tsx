@@ -1,53 +1,39 @@
 import { Container } from "react-bootstrap";
 import useFetchData from "../hooks/useFetchData";
 import ShowList from "./show/ShowList";
-import './styles/MainStyle.css';
-const Dashboard=()=>{
+import './styles/Shows.Style.css';
+import { ShowsFilterState } from '../store/context/Context';
+import { filterBySearchTerm } from "../helpers/formatData";
+import { Fragment, useEffect, useState } from "react";
+import { ModifiedShows } from "../types/types";
 
-    const {state:{showsData}}=useFetchData();
-/*const {filterState:{sort,byStock,
-        fastDelivery,
-        byRating,searchTerm}
-    }=CartState();
+const Dashboard = () => {
 
-const filterData=()=>{
-    let filteredObj:any[]=showsData;
-debugger
-    if(sort){
-        filteredObj = filteredObj.sort((a:any,b:any)=>sort==="ASC"?(a.price-b.price):(b.price-a.price))
-    }
+    const { state: { showsData } } = useFetchData();
 
-    if(byStock){
-        filteredObj=filteredObj.filter((item:any)=>!item.inStock);
-    }
+    const { filterState: { searchTerm } } = ShowsFilterState();
 
-    if(fastDelivery){
-        filteredObj=filteredObj.filter((item:any)=>item.fastDelivery);
-    }
+    //Filter data here
+    const filterData = () => {
+        let filteredObj: ModifiedShows[] = showsData;
 
-    if(byRating){
-        filteredObj=filteredObj.filter((item:any)=>item.ratings>=byRating);
-    }
+        if (searchTerm) {
+            filteredObj = filterBySearchTerm(showsData, searchTerm);
+        }
 
-    if(searchTerm){
-        filteredObj=filteredObj.filter((item:any)=>item.name.toLowerCase().includes(searchTerm));
-    }
+        return filteredObj;
+    };
 
-    return filteredObj;
-}
-*/
-    return (
-    
-    <div className="dashboard">
+    return (<div className="dashboard">
         <Container className="parent-container">
-        {(showsData || []).map((item:any)=>{
-            return <div>
-                <span className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
-                <ShowList key={Math.random()} showsList={item.showsList}></ShowList>
-                </div>
-            })};
+            {filterData().length === 0 && <h1>No Data Available</h1>}
+            {(filterData() || []).map((item: ModifiedShows) => (<Fragment key={Math.random() * 1000}>
+                {(item.showsList.length > 0 && <div>
+                    <span className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
+                    <ShowList showsList={item.showsList}></ShowList>
+                </div>)}
+            </Fragment>))}
         </Container>
-     
     </div>
     )
 }

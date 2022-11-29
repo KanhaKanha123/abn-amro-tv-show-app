@@ -1,6 +1,6 @@
 enum AppRoutes {
   dashboard = '/',
-  showDetails = '/showDetails',
+  showDetails = '/show-details',
 
 }
 enum ItemCountPerPage{

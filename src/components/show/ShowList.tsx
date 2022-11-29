@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Show from "./Show";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { RoutesConfig } from '../../constants/routes.constant';
+import { ShowType } from "../../types/types";
 
 const ShowList = ({ showsList }: any) => {
     const itemsPerPage = useRef<number>(RoutesConfig.itemPerGenre);
@@ -37,13 +38,18 @@ const ShowList = ({ showsList }: any) => {
     return (<>
         {!showsList && showsList.length == 0 && <h1>No Data Available</h1>}
 
-        {showsList.length > 0 && <section><div className="shows-list-container">
-            {(paginatedShows() || []).map((prod: any) => (<Show key={Math.random()} item={prod}></Show>))}
-        </div>
+        {showsList.length > 0 && (<>
+            <div className="shows-list-container">
+                {(paginatedShows() || []).map((showData: ShowType) => (<Show key={Math.random()} item={showData}></Show>))}
+            </div>
             <div className="pagination-container">
                 <span>{currentItem} to {calculateEndNumber()}</span>
-                <div className={showsList.length > 6 ? '' : 'hide-pagination'}><BsFillArrowLeftCircleFill onClick={() => setOffset(currentItem - itemsPerPage.current)} fontSize="25px" /><BsFillArrowRightCircleFill onClick={() => setOffset(currentItem + itemsPerPage.current)} fontSize="25px" /></div></div>
-        </section>
+                <div className={showsList.length > 6 ? '' : 'hide-pagination'}>
+                    <BsFillArrowLeftCircleFill onClick={() => setOffset(currentItem - itemsPerPage.current)} fontSize="25px" />
+                    <BsFillArrowRightCircleFill onClick={() => setOffset(currentItem + itemsPerPage.current)} fontSize="25px" />
+                </div>
+            </div>
+        </>)
         }
     </>
     )
