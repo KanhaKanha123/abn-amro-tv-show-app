@@ -1,5 +1,5 @@
 {
-  "name": "shopingapp",
+  "name": "abnamroassessement",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,9 +10,15 @@
     "@types/node": "^16.18.2",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "bootstrap": "^4.6.0",
+    "html-react-parser": "^3.0.4",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
+    "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "react-test-renderer": "^18.2.0",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
@@ -39,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-test-renderer": "^18.0.0"
   }
 }
