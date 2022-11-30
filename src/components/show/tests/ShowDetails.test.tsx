@@ -1,10 +1,8 @@
 import ShowDetails from '../ShowDetails';
 import renderer from 'react-test-renderer';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { createMemoryHistory } from 'history';
 import * as router from 'react-router'
-import { RoutesConfig } from '../../../constants/constant';
 
 const useLocation = jest.fn()
 
