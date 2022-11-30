@@ -36,15 +36,15 @@ const ShowList = ({ showsList }: any) => {
     }
 
     return (<>
-        {!showsList && showsList.length == 0 && <h1>No Data Available</h1>}
+        {showsList.length == 0 && <h1 data-testid="shows-list--no-data">No Data Available</h1>}
 
         {showsList.length > 0 && (<>
-            <div className="shows-list-container">
+            <div data-testid="shows-list--container" className="shows-list-container">
                 {(paginatedShows() || []).map((showData: ShowType) => (<Show key={Math.random()} item={showData}></Show>))}
             </div>
-            <div className="pagination-container">
-                <span>{currentItem} to {calculateEndNumber()}</span>
-                <div className={showsList.length > 6 ? '' : 'hide-pagination'}>
+            <div data-testid="shows-list--pagination-container" className="pagination-container">
+                <span>{currentItem + 1} to {calculateEndNumber()}</span>
+                <div data-testid="shows-list--pagination" className={showsList.length > 6 ? '' : 'hide-pagination'}>
                     <BsFillArrowLeftCircleFill onClick={() => setOffset(currentItem - itemsPerPage.current)} fontSize="25px" />
                     <BsFillArrowRightCircleFill onClick={() => setOffset(currentItem + itemsPerPage.current)} fontSize="25px" />
                 </div>

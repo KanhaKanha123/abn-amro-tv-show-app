@@ -11,12 +11,12 @@ const Show = ({ item }: any) => {
         navigate(RoutesConfig.showDetails, { state: { showDetails } });
     };
 
-    return <div className="show-details">
-        <Card className='card-container' onClick={() => navigateToShowDetails(item)}>
-            <Card.Img variant='top' src={item.image} alt={item.name}></Card.Img>
-            <Card.Subtitle className='show-name'>{item.name}</Card.Subtitle>
+    return <div aria-label='tv show detail cart' data-testid="show-details-container" className="show-details">
+        <Card data-testid="show-details-card" className='card-container' onClick={() => navigateToShowDetails(item)}>
+            <Card.Img data-testid="show-details-image" variant='top' src={item.image} alt="show image here"></Card.Img>
+            <Card.Subtitle data-testid="show-details-name" className='show-name'>{item.name}</Card.Subtitle>
             <Card.Subtitle className='card-subtitle'>
-                <Card.Text className='small-text'>{item.genres}</Card.Text>
+                <Card.Text data-testid="show-details-genres" className='small-text'>{item.genres}</Card.Text>
                 <Rating rating={(item.rating)}></Rating>
             </Card.Subtitle>
         </Card>

@@ -4,14 +4,14 @@ import ShowList from "./show/ShowList";
 import './styles/Shows.Style.css';
 import { ShowsFilterState } from '../store/context/Context';
 import { filterBySearchTerm } from "../helpers/formatData";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { ModifiedShows } from "../types/types";
 
 const Dashboard = () => {
 
-    const { state: { showsData } } = useFetchData();
+    const { state: { showsData, error, loading } } = useFetchData();
 
-    const { filterState: { searchTerm } } = ShowsFilterState();
+    const { filterState: { searchTerm } } = ShowsFilterState() || { filterState: { searchTerm: "" } };
 
     //Filter data here
     const filterData = () => {
@@ -25,11 +25,17 @@ const Dashboard = () => {
     };
 
     return (<div className="dashboard">
-        <Container className="parent-container">
-            {filterData().length === 0 && <h1>No Data Available</h1>}
+        <Container data-testid="dashboard-parent-container" className="parent-container">
+            <div className="error-empty-container ">
+                {loading && <div data-testid="dashboard-loader" className="loader"></div>}
+
+                {error && <h1 data-testid="dashboard-api-error">{error}</h1>}
+
+                {!error && filterData().length === 0 && <h1 data-testid="dashboard-no-data">No Data Available</h1>}
+            </div>
             {(filterData() || []).map((item: ModifiedShows) => (<Fragment key={Math.random() * 1000}>
                 {(item.showsList.length > 0 && <div>
-                    <span className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
+                    <span data-testid="dashboard-genre-text" className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
                     <ShowList showsList={item.showsList}></ShowList>
                 </div>)}
             </Fragment>))}

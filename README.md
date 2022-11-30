@@ -1,11 +1,7 @@
 
 # Project Setup
- 1.Please clone the repo from https://github.com/KanhaKanha123/abn-amro-tv-show-app.git
- 2.npm install
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ 1.Please clone the repo from https://github.com/KanhaKanha123/abn-amro-tv-show-app.git.\
+ 2.npm install.
 
 ## Available Scripts
 

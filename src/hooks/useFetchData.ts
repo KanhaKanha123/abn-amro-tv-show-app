@@ -1,7 +1,8 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { formatShowsData } from '../helpers/formatData';
 import { InitialState, articleReducer } from '../store/reducers/showsReducer';
 import { fetchShows } from '../api/fetchShows';
+
 //custom hook to manage api call to get data
 const useFetchData = () => {
     const [state, dispatch] = useReducer(articleReducer, InitialState);
@@ -10,20 +11,24 @@ const useFetchData = () => {
 
     const getData = async () => {
         try {
-            const result = await fetchShows(page.current);
+
+            let result = [];
+            const key = page.current.toString();
+            //local cashing
+            if (localStorage.getItem(key) !== "undefined") {
+                result = JSON.parse(localStorage.getItem(key) || "");
+            } else {
+                result = await fetchShows(page.current);
+                // And save the new key-value pair to the cache
+                localStorage.setItem(key, JSON.stringify(result));
+            }
 
             dispatch({ type: "DATA_SUCCESS", payload: formatShowsData(result) });
 
             page.current++;
-
-            if (result.length === 0) {
-                // hasMoreShows.value = false;
-            }
         } catch (e) {
             const err = e as Error;
-            dispatch({ type: "DATA_ERROR", payload: err.message });
-        } finally {
-            // isLoading.value = false;
+            dispatch({ type: "DATA_ERROR", payload: 'Error in Api ' + err.message });
         }
     };
 

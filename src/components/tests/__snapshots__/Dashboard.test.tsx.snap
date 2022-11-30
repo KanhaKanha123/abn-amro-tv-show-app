@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard component test Dashboard component should match snapshot 1`] = `
+<div
+  className="dashboard"
+>
+  <div
+    className="parent-container container"
+    data-testid="dashboard-parent-container"
+  >
+    <div
+      className="error-empty-container "
+    >
+      <div
+        className="loader"
+        data-testid="dashboard-loader"
+      />
+      <h1
+        data-testid="dashboard-no-data"
+      >
+        No Data Available
+      </h1>
+    </div>
+  </div>
+</div>
+`;

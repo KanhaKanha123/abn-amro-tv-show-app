@@ -17,7 +17,6 @@ export const formatShowsData = (shows: ShowType[]) => {
     } catch (err) {
         console.error(err);
     }
-
 };
 
 export const showsByGenre = (shows: ShowType[], genre: string) => {
@@ -25,11 +24,12 @@ export const showsByGenre = (shows: ShowType[], genre: string) => {
         .filter((show) => {
             return show.genres.includes(genre);
         }).map(show => ({
+            id: show.id,
             image: show.image?.medium,
             rating: show.rating.average,
             fullName: show.name,
             name: show.name.length > 15 ? show.name.substring(0, 15) + '...' : show.name,
-            genres: show.genres.map((genre: string, index: number) => (index > 0 ? ',' : '') + genre),
+            genres: show.genres.reduce((acc, genre: string, index: number) => acc + ((index > 0 ? ',' : '') + genre), ''),
             summary: show.summary
         }));
 };
