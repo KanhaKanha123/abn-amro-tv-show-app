@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
-import ShowList from "./show/ShowList";
-import { ShowsAppState } from '../store/context/Context';
+import ShowList from "../show/ShowList";
+import { ShowsAppState } from '../../store/context/Context';
 import { Fragment } from "react";
-import { ModifiedShows } from "../types/types";
+import { ModifiedShows } from "../../types/types";
 
 const Dashboard = () => {
     //Read state from Context API store

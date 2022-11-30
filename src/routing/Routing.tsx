@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from '../components/Dashboard';
+import Dashboard from '../components/dashboard/Dashboard';
 import { RoutesConfig } from '../constants/constant';
 import ShowDetails from '../components/show/ShowDetails';
 import ErrorBoundary from '../error-boundries/ErrorBoundry';
