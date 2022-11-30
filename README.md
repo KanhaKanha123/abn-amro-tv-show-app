@@ -26,7 +26,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 1.Route Paths,Item per genre and API paths all you can congure in constants/constant.ts file. Like you can change item per genre 6,7,8....., Right now it's 5 per Horizontal list.
 
 # Application design
-I choose React for this task. Because i am more expert in react than VueJs. Both are nice libraries and light weight. Below are few points which i choose to design application well strucured,high performance,readable and accessible.\
+I choose React for this task. Because i am more expert in react than VueJs. Both are nice libraries and light weight. Below are few points which i choose to design application well strucured,high performance,readable and accessible.
 
 1.Loosely coupled.\
 2.Shared resuable component.\
@@ -39,7 +39,7 @@ I choose React for this task. Because i am more expert in react than VueJs. Both
 9.Loader added when call to api to show user that api call is happening.\
 10.Error handling and Empty data validations added to show friendly message to user.\
 11.Error boundries implemented to catch compile time errors so whole app will not break.\
-12.State is manage by cotext api and useReducer hook.So we can access state anywhere in the application.
+12.State is manage by cotext api and useReducer hook.So we can access state anywhere in the application.\
 13.Reusable custom hook implemented to perform api calls. this hook can be call from anywhere in the app.
 
 # Funcationality Dashboard
