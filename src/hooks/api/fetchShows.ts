@@ -1,5 +1,5 @@
-import { RoutesConfig } from '../constants/routes.constant';
-import type { ShowAllData } from '../types/types';
+import { RoutesConfig } from '../../constants/constant';
+import type { ShowAllData } from '../../types/types';
 
 const headers = {
   headers: {
@@ -22,7 +22,7 @@ export async function fetchShows(page: number): Promise<ShowAllData[]> {
   return await response.json();
 }
 
-//I did not use because i collected data in the state already
+/**I did not use because i collected data in the state already
 export async function fetchShow(id: number): Promise<ShowAllData> {
   const url = `${RoutesConfig.apiShows}/${id}`;
   const response = await fetch(url, headers);
@@ -33,3 +33,4 @@ export async function fetchShow(id: number): Promise<ShowAllData> {
 
   return await response.json();
 }
+**/

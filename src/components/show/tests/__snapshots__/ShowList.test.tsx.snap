@@ -2,12 +2,13 @@
 
 exports[`ShowList component test ShowList component should match snapshot 1`] = `
 Array [
-  <div
+  <section
+    aria-label="List of shows genre wise, 6 items per page"
     className="shows-list-container"
     data-testid="shows-list--container"
   >
-    <div
-      aria-label="tv show detail cart"
+    <main
+      aria-label="TV show detail cart"
       className="show-details"
       data-testid="show-details-container"
     >
@@ -18,11 +19,13 @@ Array [
       >
         <img
           alt="show image here"
+          aria-label="Image of show"
           className="card-img-top"
           data-testid="show-details-image"
           src="https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"
         />
         <div
+          aria-label="name of show"
           className="show-name card-subtitle h6"
           data-testid="show-details-name"
         >
@@ -32,12 +35,15 @@ Array [
           className="card-subtitle card-subtitle h6"
         >
           <p
+            aria-label="genres of show"
             className="small-text card-text"
             data-testid="show-details-genres"
           >
             Drama
           </p>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -58,7 +64,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -79,7 +87,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -100,7 +110,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -121,7 +133,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -142,7 +156,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -163,7 +179,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               data-testid="rating-half-star7"
               fill="currentColor"
@@ -185,7 +203,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -206,7 +226,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -227,7 +249,9 @@ Array [
               />
             </svg>
           </span>
-          <span>
+          <span
+            aria-label="rating star image"
+          >
             <svg
               fill="currentColor"
               fontSize="15px"
@@ -250,22 +274,29 @@ Array [
           </span>
         </div>
       </div>
-    </div>
-  </div>,
-  <div
+    </main>
+  </section>,
+  <section
+    aria-label="pagination section of show"
     className="pagination-container"
     data-testid="shows-list--pagination-container"
   >
-    <span>
+    <span
+      aria-label="start and end count of records on current page"
+    >
+      Records 
       1
        to 
       1
     </span>
-    <div
-      className="hide-pagination"
+    <section
+      aria-label="pagination arrow buttons"
+      className="pagination-buttons-container hide-pagination"
       data-testid="shows-list--pagination"
     >
       <svg
+        aria-label="pagination forward arrow button"
+        className="pagination-button-pointer"
         fill="currentColor"
         fontSize="25px"
         height="1em"
@@ -286,6 +317,8 @@ Array [
         />
       </svg>
       <svg
+        aria-label="pagination backword arrow button"
+        className="pagination-button-pointer"
         fill="currentColor"
         fontSize="25px"
         height="1em"
@@ -305,7 +338,7 @@ Array [
           d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
         />
       </svg>
-    </div>
-  </div>,
+    </section>
+  </section>,
 ]
 `;

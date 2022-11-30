@@ -5,10 +5,15 @@ export const filterReducer = (state: any, action?: any) => {
                 ...state,
                 searchTerm: action.payload
             }
-            break;
+        case "FILTERED_DATA":
+            return {
+                ...state,
+                filteredData: action.payload
+            }
         default:
             return {
-                searchTerm: ""
+                searchTerm: "",
+                filteredData: []
             };
     }
 }

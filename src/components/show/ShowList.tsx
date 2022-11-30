@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import Show from "./Show";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
-import { RoutesConfig } from '../../constants/routes.constant';
+import { RoutesConfig } from '../../constants/constant';
 import { ShowType } from "../../types/types";
 
 const ShowList = ({ showsList }: any) => {
@@ -32,26 +32,30 @@ const ShowList = ({ showsList }: any) => {
             return (currentItem + itemsPerPage.current) - diff;
         }
 
+        if (itemsPerPage.current > showsList.length) {
+            return currentItem + showsList.length;
+        }
+
         return currentItem + itemsPerPage.current;
     }
 
-    return (<>
-        {showsList.length == 0 && <h1 data-testid="shows-list--no-data">No Data Available</h1>}
+    return (<Fragment>
+        {showsList.length == 0 && <h1 aria-label="No data available for listing shows" data-testid="shows-list--no-data">No Data Available</h1>}
 
-        {showsList.length > 0 && (<>
-            <div data-testid="shows-list--container" className="shows-list-container">
+        {showsList.length > 0 && (<Fragment>
+            <section aria-label="List of shows genre wise, 6 items per page" data-testid="shows-list--container" className="shows-list-container">
                 {(paginatedShows() || []).map((showData: ShowType) => (<Show key={Math.random()} item={showData}></Show>))}
-            </div>
-            <div data-testid="shows-list--pagination-container" className="pagination-container">
-                <span>{currentItem + 1} to {calculateEndNumber()}</span>
-                <div data-testid="shows-list--pagination" className={showsList.length > 6 ? '' : 'hide-pagination'}>
-                    <BsFillArrowLeftCircleFill onClick={() => setOffset(currentItem - itemsPerPage.current)} fontSize="25px" />
-                    <BsFillArrowRightCircleFill onClick={() => setOffset(currentItem + itemsPerPage.current)} fontSize="25px" />
-                </div>
-            </div>
-        </>)
+            </section>
+            <section aria-label="pagination section of show" data-testid="shows-list--pagination-container" className="pagination-container">
+                <span aria-label="start and end count of records on current page">Records {currentItem + 1} to {calculateEndNumber()}</span>
+                <section aria-label="pagination arrow buttons" data-testid="shows-list--pagination" className={`pagination-buttons-container ${showsList.length > itemsPerPage.current ? '' : 'hide-pagination'}`}>
+                    <BsFillArrowLeftCircleFill aria-label="pagination forward arrow button" className="pagination-button-pointer" onClick={() => setOffset(currentItem - itemsPerPage.current)} fontSize="25px" />
+                    <BsFillArrowRightCircleFill aria-label="pagination backword arrow button" className="pagination-button-pointer" onClick={() => setOffset(currentItem + itemsPerPage.current)} fontSize="25px" />
+                </section>
+            </section>
+        </Fragment>)
         }
-    </>
+    </Fragment>
     )
 }
 

@@ -3,9 +3,9 @@ import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { ShowComponentMockProps } from './fixture/test-data';
 import * as router from 'react-router'
+import { RoutesConfig } from '../../../constants/constant';
 
 const navigate = jest.fn()
-// const navigateToShowDetails = jest.fn()
 
 describe('Show component test', () => {
     beforeEach(() => {
@@ -35,8 +35,7 @@ describe('Show component test', () => {
         const element = await renderer.create(<Show item={ShowComponentMockProps} />);
         const showCard = screen.getByTestId("show-details-card");
         fireEvent.click(showCard);
-        // navigateToShowDetails(ShowComponentMockProps);
-        expect(navigate).toHaveBeenCalled;
+        expect(navigate).toHaveBeenCalledWith(RoutesConfig.showDetails, { "state": { "showDetails": { "fullName": "Under", "genres": "Drama", "id": 1, "image": "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg", "name": "Under", "rating": 6.5, "summary": "Under the Dome" } } });
     });
 
     test("Show component should match snapshot", async () => {

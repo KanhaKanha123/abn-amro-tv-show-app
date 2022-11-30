@@ -1,8 +1,8 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import '@testing-library/jest-dom';
-import { RoutesConfig } from '../../constants/routes.constant';
-import { fetchShow, fetchShows } from '../fetchShows';
+import { RoutesConfig } from '../../../constants/constant';
+import { fetchShows } from '../fetchShows';
 import { showsMockData } from './fixture/test-data';
 
 describe.only('fetchShows.test test', () => {
@@ -32,15 +32,5 @@ describe.only('fetchShows.test test', () => {
 
     await expect(shows).toHaveLength(1);
   });
-
-  test.skip('fetchShows() failure', async () => {
-    server.use(
-      rest.get(`${RoutesConfig.apiShows}?page=undefined`, (req, res, ctx) => {
-        return res(ctx.status(500));
-      }),
-    )
-    await expect(fetchShow(1)).rejects.toThrow('Internal Server Error');
-  });
-
 }
 );

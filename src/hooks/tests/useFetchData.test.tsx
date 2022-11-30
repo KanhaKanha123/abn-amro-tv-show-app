@@ -4,9 +4,11 @@ import { act } from 'react-test-renderer';
 
 describe('useFetchData custom hook component test', () => {
 
+  let fetchShows = jest.fn();
+
   let fetchMock = global.fetch = jest.fn(() =>
     Promise.resolve({
-      json: () => Promise.resolve({  returnedData: "foo1" }),
+      json: () => Promise.resolve({ returnedData: "foo1" }),
     }),
   ) as jest.Mock;
 
@@ -14,11 +16,6 @@ describe('useFetchData custom hook component test', () => {
 
     const { result } = renderHook(() => useFetchData());
 
-    await act(async () => {
-     // result.current.setApiUrl("bundle-api.json");
-    });
-
- 
     waitFor(() => {
       expect(fetchMock).toHaveBeenCalled();
       expect(result.current).toBe({
@@ -27,4 +24,14 @@ describe('useFetchData custom hook component test', () => {
     });
 
   });
+
+  test("fetchShows called", async () => {
+
+    const { result } = renderHook(() => useFetchData());
+    waitFor(() => {
+      expect(fetchShows).toHaveBeenCalled();
+    });
+
+  });
+
 })

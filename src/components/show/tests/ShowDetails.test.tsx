@@ -1,25 +1,19 @@
 import ShowDetails from '../ShowDetails';
 import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
-import { ShowComponentMockProps } from './fixture/test-data';
 import '@testing-library/jest-dom';
-import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import * as router from 'react-router'
+import { RoutesConfig } from '../../../constants/constant';
 
 const useLocation = jest.fn()
 
 describe.skip('ShowDetails component test', () => {
     beforeEach(() => {
+        jest.spyOn(router, 'useNavigate').mockImplementation(() => useLocation)
     });
 
     test("ShowDetails component load correctly", () => {
-        const history: any = createMemoryHistory()
-        /* render(
-             <Router>
-                 <ShowDetails />
-             </Router>,
-         )
-         */
         const wrapper = screen.getByTestId("sshow-detail--main-container");
         const image = screen.getByTestId("show-detail-image");
 

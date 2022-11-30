@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Context from './store/context/Context';
+import { BrowserRouter as Router } from 'react-router-dom';
+import './styles/Shows.Style.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Context>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Context>
   </React.StrictMode>
 );

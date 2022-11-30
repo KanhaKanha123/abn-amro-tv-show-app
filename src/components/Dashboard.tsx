@@ -1,46 +1,41 @@
 import { Container } from "react-bootstrap";
-import useFetchData from "../hooks/useFetchData";
 import ShowList from "./show/ShowList";
-import './styles/Shows.Style.css';
-import { ShowsFilterState } from '../store/context/Context';
-import { filterBySearchTerm } from "../helpers/formatData";
+import { ShowsAppState } from '../store/context/Context';
 import { Fragment } from "react";
 import { ModifiedShows } from "../types/types";
 
 const Dashboard = () => {
+    //Read state from Context API store
+    const { state, filterState: { searchTerm, filteredData } } = ShowsAppState() || ShowsAppState() || { state: { showsData: [], error: "", loading: false }, filterState: { searchTerm: "" }, filterDispatch: () => { } };
 
-    const { state: { showsData, error, loading } } = useFetchData();
+    const { showsData, error, loading } = state;
 
-    const { filterState: { searchTerm } } = ShowsFilterState() || { filterState: { searchTerm: "" } };
+    let filteredShowsData: ModifiedShows[] = [];
 
-    //Filter data here
-    const filterData = () => {
-        let filteredObj: ModifiedShows[] = showsData;
+    if (searchTerm === "") {
+        filteredShowsData = showsData;
+    } else {
+        filteredShowsData = filteredData;
+    }
 
-        if (searchTerm) {
-            filteredObj = filterBySearchTerm(showsData, searchTerm);
-        }
+    return (<Container aria-label="Main tv shows listing container" className="dashboard">
+        <main data-testid="dashboard-parent-container" className="parent-container">
+            <section aria-label="Section to display error or empty data messages" className="error-empty-container">
+                {loading && <div aria-label="Loading spinner" data-testid="dashboard-loader" className="loader"></div>}
+                {error && <h1 aria-label="Error message" data-testid="dashboard-api-error">{error}</h1>}
+                {!error && filteredShowsData.length === 0 && <h1 aria-label="No tv shows available" data-testid="dashboard-no-data">No Data Available</h1>}
+            </section>
 
-        return filteredObj;
-    };
-
-    return (<div className="dashboard">
-        <Container data-testid="dashboard-parent-container" className="parent-container">
-            <div className="error-empty-container ">
-                {loading && <div data-testid="dashboard-loader" className="loader"></div>}
-
-                {error && <h1 data-testid="dashboard-api-error">{error}</h1>}
-
-                {!error && filterData().length === 0 && <h1 data-testid="dashboard-no-data">No Data Available</h1>}
-            </div>
-            {(filterData() || []).map((item: ModifiedShows) => (<Fragment key={Math.random() * 1000}>
-                {(item.showsList.length > 0 && <div>
-                    <span data-testid="dashboard-genre-text" className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
-                    <ShowList showsList={item.showsList}></ShowList>
-                </div>)}
-            </Fragment>))}
-        </Container>
-    </div>
+            <section aria-label="TV shows listing by genres">
+                {filteredShowsData.map((item: ModifiedShows) => (<Fragment key={Math.random() * 1000}>
+                    {(item.showsList.length > 0 && <Fragment>
+                        <span aria-label="Genre name and total count on top of each table" data-testid="dashboard-genre-text" className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
+                        <ShowList showsList={item.showsList}></ShowList>
+                    </Fragment>)}
+                </Fragment>))}
+            </section>
+        </main>
+    </Container>
     )
 }
 

@@ -2,25 +2,27 @@
 
 exports[`Dashboard component test Dashboard component should match snapshot 1`] = `
 <div
-  className="dashboard"
+  aria-label="Main tv shows listing container"
+  className="dashboard container"
 >
-  <div
-    className="parent-container container"
+  <main
+    className="parent-container"
     data-testid="dashboard-parent-container"
   >
-    <div
-      className="error-empty-container "
+    <section
+      aria-label="Section to display error or empty data messages"
+      className="error-empty-container"
     >
-      <div
-        className="loader"
-        data-testid="dashboard-loader"
-      />
       <h1
+        aria-label="No tv shows available"
         data-testid="dashboard-no-data"
       >
         No Data Available
       </h1>
-    </div>
-  </div>
+    </section>
+    <section
+      aria-label="TV shows listing by genres"
+    />
+  </main>
 </div>
 `;

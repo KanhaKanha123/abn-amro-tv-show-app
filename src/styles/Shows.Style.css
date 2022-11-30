@@ -1,7 +1,7 @@
 .dashboard {
     display: flex;
     flex-flow: column;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 10px;
 }
 
@@ -50,10 +50,21 @@ p {
     gap: 10px;
 }
 
+.pagination-buttons-container {
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+}
+
+.pagination-button-pointer {
+    cursor: pointer;
+}
+
 .shows-list-container {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
+    gap: 5px;
 }
 
 .hide-pagination {
@@ -71,8 +82,6 @@ p {
 .show-details {
     display: flex;
     flex-flow: column;
-    width: 15.7%;
-    margin: 5px;
     text-align: center;
 }
 
@@ -121,8 +130,13 @@ p {
     .show-details {
         display: flex;
         flex-flow: column;
-        width: 100%;
-        margin: 5px;
         text-align: center;
+    }
+
+    .dashboard {
+        display: flex;
+        flex-flow: column;
+        margin-top: 10px;
+        align-items: inherit;
     }
 }
