@@ -1,6 +1,6 @@
 
 # Project Setup
- 1.Please clone the repo from https://github.com/KanhaKanha123/abn-amro-tv-show-app.git.\
+ 1.Please clone the repo from https://github.com/KanhaKanha123/abn-amro-tv-show-app.git. \
  2.npm install.
 
 ## Available Scripts
@@ -23,7 +23,7 @@ Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 # Application config settings
-1.Routing,Item per genre in the lists,API paths all you can congure in constants/constant.ts file. Like you can change item per genre 6,7,8....., Right now it's 5 per Horizontal list.
+1.Route Paths,Item per genre and API paths all you can congure in constants/constant.ts file. Like you can change item per genre 6,7,8....., Right now it's 5 per Horizontal list.
 
 # Application design
 1.Loosely coupled.\
@@ -33,11 +33,11 @@ It correctly bundles React in production mode and optimizes the build for the be
 5.Unit test cases implemented with code coverage around 74%.\
 6.Accessibility attribute added.\
 7.For now data is fetched for page=0 only. but i have written some code if we want to fetch more records. Because page=0 itself was having more that 200 records. I just tried to display those and performed all the things.\
-8.Pagination to show next 5 items in the list is added.
-9.Loader added when call to api.
-10.Error handling and Empty data validations also added.
-11.Error boundries implemented.
-12State is manage by cotext api and useReducer hook.
+8.Pagination added, 5 items in the list.\
+9.Loader added when call to api.\
+10.Error handling and Empty data validations added.\
+11.Error boundries implemented.\
+12.State is manage by cotext api and useReducer hook.
 
 # Funcationality Dashboard
  1.Application will have listing on dashboard by genre names.\
@@ -51,7 +51,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 # Search
 1.Can type any keyword.\
 2.Debouncing implemented to make performance better.\
-3.After 500 miliseconds filtered records will be displayed for each genre.
+3.After 500 miliseconds filtered records will be displayed for each genre.\
+4.Search is using "include algorithm" so it will match chars anywhere in the show name EX.. Show should contain the search term that's enough.
 
 # Detail Page
 1.Click on the cart.\

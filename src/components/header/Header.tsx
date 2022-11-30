@@ -36,7 +36,7 @@ const Header = () => {
                 </FormControl>
             </Navbar.Text>
             <Navbar.Brand>
-                <MdAccountBox fontSize="35" />
+                <MdAccountBox className='hide-element' fontSize="35" />
             </Navbar.Brand>
         </Container>
         <Nav></Nav>

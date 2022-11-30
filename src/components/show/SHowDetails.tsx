@@ -2,13 +2,15 @@ import { Link, useLocation } from "react-router-dom"
 import { RoutesConfig } from '../../constants/constant';
 import parse from 'html-react-parser'
 import Rating from "../ratings/Rating";
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 
 const ShowDetails = () => {
     const { state: { showDetails } } = useLocation();
 
     return (<main aria-label="TV show detail" className="show-details-container">
         <nav aria-label="navigation link to go back to listing">
-            <Link className="navigate-link" to={RoutesConfig.dashboard} color="primary">Go To Dashboard </Link>
+            <Link className="navigate-link" to={RoutesConfig.dashboard} color="primary">
+                <MdOutlineArrowBackIosNew className="pagination-button-pointer" fontSize="25px" /> Go To Dashboard </Link>
         </nav>
 
         {!showDetails && <h1 data-testid="show-detail-no-data">No Data Available</h1>}
