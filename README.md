@@ -46,7 +46,7 @@ It correctly bundles React in production mode and optimizes the build for the be
  4.Count per page also is shown near pagination array.\
  5.Pagination works in memory by array.slice method so no api call is made.\
  6.Pagination will not be visible if list has less than 5 records.\
- 7.All the validations for empty list or empty records are applied and empty message also displayed.\
+ 7.All the validations for empty list or empty records are applied and empty message also displayed.
  
 # Search
 1.Can type any keyword.\
