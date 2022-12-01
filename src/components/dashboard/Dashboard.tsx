@@ -18,21 +18,26 @@ const Dashboard = () => {
         filteredShowsData = filteredData;
     }
 
+    const renderValidationTemplate = () => (<Fragment>{loading && <div aria-label="Loading spinner" data-testid="dashboard-loader" className="loader"></div>}
+        {error && <h1 aria-label="Error message" data-testid="dashboard-api-error">{error}</h1>}
+        {!error && filteredShowsData.length === 0 && <h1 aria-label="No tv shows available" data-testid="dashboard-no-data">No Data Available</h1>}
+    </Fragment>);
+
+    const renderShowListTemplate = () => (<Fragment>{filteredShowsData.map((item: ModifiedShows) => (<Fragment key={Math.random() * 1000}>
+        {(item.showsList.length > 0 && <Fragment>
+            <span aria-label="Genre name and total count on top of each table" data-testid="dashboard-genre-text" className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
+            <ShowList showsList={item.showsList}></ShowList>
+        </Fragment>)}
+    </Fragment>))}</Fragment>);
+
     return (<Container aria-label="Main tv shows listing container" className="dashboard">
         <main data-testid="dashboard-parent-container" className="parent-container">
             <section aria-label="Section to display error or empty data messages" className="error-empty-container">
-                {loading && <div aria-label="Loading spinner" data-testid="dashboard-loader" className="loader"></div>}
-                {error && <h1 aria-label="Error message" data-testid="dashboard-api-error">{error}</h1>}
-                {!error && filteredShowsData.length === 0 && <h1 aria-label="No tv shows available" data-testid="dashboard-no-data">No Data Available</h1>}
+                {renderValidationTemplate()}
             </section>
 
             <section aria-label="TV shows listing by genres">
-                {filteredShowsData.map((item: ModifiedShows) => (<Fragment key={Math.random() * 1000}>
-                    {(item.showsList.length > 0 && <Fragment>
-                        <span aria-label="Genre name and total count on top of each table" data-testid="dashboard-genre-text" className="genre-text">{item.genreName} (Total Records: {item.showsList.length})</span>
-                        <ShowList showsList={item.showsList}></ShowList>
-                    </Fragment>)}
-                </Fragment>))}
+                {renderShowListTemplate()}
             </section>
         </main>
     </Container>
